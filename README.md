@@ -33,3 +33,44 @@ Encrypt the file in a secure environment, such as a virtual private network (VPN
 Encrypt the file in multiple locations.
 Rotate the encryption keys regularly.
 By following these tips, you can help to protect your files from unauthorized access.
+## How to use
+
+* Create two bash script files (encriptar and desencriptar) with an extension .sh (For instances, you can use whatever the name you want)
+* Inside the encriptar.sh / desencriptar.sh write the following:
+
+### encriptar.sh
+
+  ```shell
+   #!/bin/bash
+    openssl enc -aes-256-cbc -salt -in $1 -out $2 -pbkdf2
+  ```
+### desencriptar.sh
+```shell
+  #!/bin/bash
+ openssl enc -d -aes-256-cbc -in $1 -out $2 -pbkdf2
+```
+
+* When the files have been created so, we need to make them executable:
+  ```shell
+  chmod +x encriptar.sh desencriptar.sh
+  ```
+* We can take at look and see if they are executable files by writting
+  ```shell
+  ls -lar
+  ```
+
+### Execute the bash script files
+* Encrypting the file
+```shell
+bash encriptar.sh input_file_name_to_encrypt output_file_name_to_what_ever_extension
+Example:
+bash encriptar my_file,csv my_file.csv.enc
+```
+* desencrypting the file
+```shell
+bash desencriptar.sh input_file_name_to_desencrypt output_file_name_to_what_ever_extension
+Example:
+bash deseencriptar my_file,csv.enc my_file.txt
+```
+
+  
